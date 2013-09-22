@@ -122,6 +122,10 @@ if OPENJTAG
 DRIVERFILES += openjtag.c
 endif
 
+if GOODFET
+DRIVERFILES += goodfet.c
+endif
+
 noinst_HEADERS = \
 	bitbang.h \
 	bitq.h \

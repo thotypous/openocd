@@ -470,6 +470,10 @@ AC_ARG_ENABLE([buspirate],
   AS_HELP_STRING([--enable-buspirate], [Enable building support for the Buspirate]),
   [build_buspirate=$enableval], [build_buspirate=no])
 
+AC_ARG_ENABLE([goodfet],
+  AS_HELP_STRING([--enable-goodfet], [Enable building support for the GoodFET]),
+  [build_goodfet=$enableval], [build_goodfet=no])
+
 AC_ARG_ENABLE([sysfsgpio],
   AS_HELP_STRING([--enable-sysfsgpio], [Enable building support for programming driven via sysfs gpios.]),
   [build_sysfsgpio=$enableval], [build_sysfsgpio=no])
@@ -570,6 +574,10 @@ case $host in
       AC_MSG_ERROR([buspirate currently not supported by MinGW32 hosts])
     fi
 
+    if test x$build_goodfet = xyes; then
+      AC_MSG_ERROR([goodfet currently not supported by MinGW32 hosts])
+    fi
+
     CFLAGS="$CFLAGS -D__USE_MINGW_ANSI_STDIO"
 
     AC_DEFINE([IS_MINGW], [1], [1 if building for MinGW.])
@@ -656,6 +664,13 @@ if test x$parport_use_giveio = xyes; then
   AC_DEFINE([PARPORT_USE_GIVEIO], [1], [1 if you want parport to use giveio.])
 else
   AC_DEFINE([PARPORT_USE_GIVEIO], [0], [0 if you don't want parport to use giveio.])
+fi
+
+if test $build_goodfet = yes; then
+  build_bitbang=yes
+  AC_DEFINE([BUILD_GOODFET], [1], [1 if you want the GoodFET JTAG driver.])
+else
+  AC_DEFINE([BUILD_GOODFET], [0], [0 if you don't want the GoodFET JTAG driver.])
 fi
 
 if test $build_bitbang = yes; then
@@ -1146,6 +1161,7 @@ AM_CONDITIONAL([OPENJTAG], [test $build_openjtag_ftd2xx = yes -o $build_openjtag
 AM_CONDITIONAL([OOCD_TRACE], [test $build_oocd_trace = yes])
 AM_CONDITIONAL([REMOTE_BITBANG], [test $build_remote_bitbang = yes])
 AM_CONDITIONAL([BUSPIRATE], [test $build_buspirate = yes])
+AM_CONDITIONAL([GOODFET], [test $build_goodfet = yes])
 AM_CONDITIONAL([SYSFSGPIO], [test $build_sysfsgpio = yes])
 AM_CONDITIONAL([USE_LIBUSB0], [test $use_libusb0 = yes])
 AM_CONDITIONAL([USE_LIBUSB1], [test $use_libusb1 = yes])
