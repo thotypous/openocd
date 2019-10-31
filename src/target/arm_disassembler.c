@@ -1468,6 +1468,7 @@ static int evaluate_misc_instr(uint32_t opcode,
 					Rs);
 		}
 
+#if 0
 		/* SMLAW < y> */
 		if (((opcode & 0x00600000) == 0x00100000) && (x == 0)) {
 			uint8_t Rd, Rm, Rs, Rn;
@@ -1530,6 +1531,7 @@ static int evaluate_misc_instr(uint32_t opcode,
 					Rm,
 					Rs);
 		}
+#endif
 	}
 
 	return ERROR_OK;
@@ -3272,6 +3274,7 @@ static int t2ev_data_immed(uint32_t opcode, uint32_t address,
 		case 0x10:
 		case 0x12:
 			is_signed = true;
+			// fall through
 		case 0x18:
 		case 0x1a:
 			/* signed/unsigned saturated add */

@@ -1097,7 +1097,7 @@ static int jtag_examine_chain(void)
 	/* if autoprobing, the tap list is still empty ... populate it! */
 	while (autoprobe && bit_count < (JTAG_MAX_CHAIN_SIZE * 32) - 31) {
 		uint32_t idcode;
-		char buf[12];
+		char buf[32];
 
 		/* Is there another TAP? */
 		idcode = buf_get_u32(idcode_buffer, bit_count, 32);

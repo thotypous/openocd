@@ -1897,6 +1897,7 @@ static int sam4_page_read(struct sam4_bank_private *pPrivate, unsigned pagenum, 
 /* } */
 /* ======================================== */
 
+#if 0
 static const uint8_t
 	sam4_page_write_opcodes[] = {
 	/*  24 0000 0446                mov	r4, r0 */
@@ -1934,6 +1935,7 @@ static const uint8_t
 	0xfb, 0xd0,
 	0x00, 0xBE				/* bkpt #0 */
 };
+#endif
 
 static int sam4_page_write(struct sam4_bank_private *pPrivate, unsigned pagenum, uint8_t *buf)
 {

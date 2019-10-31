@@ -353,8 +353,8 @@ static int arm7_9_unset_breakpoint(struct target *target, struct breakpoint *bre
 			if (current_instr == arm7_9->thumb_bkpt)
 				retval = target_write_memory(target,
 						breakpoint->address, 2, 1, breakpoint->orig_instr);
-				if (retval != ERROR_OK)
-					return retval;
+			if (retval != ERROR_OK)
+				return retval;
 
 		}
 

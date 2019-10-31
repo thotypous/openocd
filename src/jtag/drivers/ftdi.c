@@ -730,6 +730,7 @@ COMMAND_HANDLER(ftdi_handle_set_signal_command)
 			ftdi_set_signal(sig, *CMD_ARGV[1]);
 			break;
 		}
+		// fall through
 	default:
 		LOG_ERROR("unknown signal level '%s', use 0, 1 or z", CMD_ARGV[1]);
 		return ERROR_COMMAND_SYNTAX_ERROR;

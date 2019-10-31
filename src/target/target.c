@@ -3266,6 +3266,7 @@ COMMAND_HANDLER(handle_bp_command)
 				addr = 0;
 				return handle_bp_command_set(CMD_CTX, addr, asid, length, hw);
 			}
+			return ERROR_COMMAND_SYNTAX_ERROR;
 
 		case 4:
 			hw = BKPT_HARD;

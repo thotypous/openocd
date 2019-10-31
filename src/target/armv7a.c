@@ -293,6 +293,7 @@ int armv7a_mmu_translate_va_pa(struct target *target, uint32_t va,
 				break;
 			case 7:
 				LOG_INFO("inner: Write-Back, no Write-Allocate");
+				break;
 
 			default:
 				LOG_INFO("inner: %x ???", INNER);

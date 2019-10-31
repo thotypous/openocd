@@ -624,11 +624,13 @@ static int svf_read_command_from_file(FILE *fd)
 				if (svf_getline(&svf_read_line, &svf_read_line_size, svf_fd) <= 0)
 					return ERROR_FAIL;
 				i = -1;
+				// fall through
 			case '\r':
 				slash = 0;
 				/* Don't save '\r' and '\n' if no data is parsed */
 				if (!cmd_pos)
 					break;
+				// fall through
 			default:
 				/* The parsing code currently expects a space
 				 * before parentheses -- "TDI (123)".  Also a
