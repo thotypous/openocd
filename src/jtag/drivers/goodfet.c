@@ -285,9 +285,7 @@ ssize_t goodfet_read_packet(goodfet_t *gf, goodfet_packet_t **p, struct timeval 
 					return -gf->err;
 				}
 
-				/* the count is now stored in big endian order--network order--
-				   so we need to convert it to the platform order using ntohs */
-				pkt->count = ntohs(tmpshort);
+				pkt->count = tmpshort;
 
 				/* if the packet has payload, allocate a block of memory for it */
 				if (pkt->count > 0) {
